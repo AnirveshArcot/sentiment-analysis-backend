@@ -3,6 +3,9 @@ from pydantic import BaseModel
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import torch
 from fastapi.middleware.cors import CORSMiddleware
+import gdown
+
+
 
 
 app = FastAPI()
@@ -14,6 +17,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+google_drive_link = 'https://drive.google.com/uc?id=1o7IjKFHX2u8R-tsahSkSp3aEPhBNd1c2'
+gdown.download(google_drive_link, output=None, quiet=False)
 
 tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased")
